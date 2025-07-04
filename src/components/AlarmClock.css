@@ -65,6 +65,7 @@ select {
   font-size: 1rem;
 }
 
+/* Day Selection */
 .days-checkboxes {
   display: flex;
   flex-wrap: wrap;
@@ -73,13 +74,15 @@ select {
 }
 
 .days-checkboxes label {
-  background: #e0e0e0;
   padding: 6px 12px;
   border-radius: 25px;
   cursor: pointer;
   font-size: 0.9rem;
   user-select: none;
-  transition: background-color 0.3s;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  background: #e0e0e0;
+  color: #333;
 }
 
 .days-checkboxes input {
@@ -90,6 +93,21 @@ select {
 .days-checkboxes label:has(input:checked) {
   background: #4caf50;
   color: #fff;
+  border-color: #4caf50;
+}
+
+/* Day button styling for dark mode */
+.dark-mode .days-checkboxes label {
+  background: #2c2c2c;
+  color: #ccc;
+  border: 1px solid #444;
+}
+
+.dark-mode .days-checkboxes input:checked + label,
+.dark-mode .days-checkboxes label:has(input:checked) {
+  background: #4caf50;
+  color: #fff;
+  border-color: #4caf50;
 }
 
 /* Buttons */
@@ -146,8 +164,8 @@ select {
 }
 
 .dark-mode .theme-toggle-fixed {
-  background: #333;
-  color: #fff;
+  background: #c8d0c6;
+  color: #7be32c;
 }
 
 /* Alarm list */
