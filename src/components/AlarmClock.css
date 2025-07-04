@@ -6,6 +6,8 @@ body {
   background-color: #f3f4f6;
   color: #222;
   transition: background-color 0.3s, color 0.3s;
+  display: flex;
+  justify-content: center;
 }
 
 .dark-mode {
