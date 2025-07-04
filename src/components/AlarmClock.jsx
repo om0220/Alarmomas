@@ -22,7 +22,7 @@ const AlarmClock = () => {
       const hours = now.getHours().toString().padStart(2, '0');
       const minutes = now.getMinutes().toString().padStart(2, '0');
       const current = `${hours}:${minutes}`;
-      const today = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][now.getDay()];
+      const today = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][now.getDay()];
       setCurrentTime(current);
 
       alarms.forEach((alarm, index) => {
@@ -116,7 +116,7 @@ const AlarmClock = () => {
 
           <label>Repeat on:</label>
           <div className="days-checkboxes">
-            {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
+            {['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'].map((day) => (
               <label key={day}>
                 <input
                   type="checkbox"

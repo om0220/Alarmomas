@@ -1,184 +1,205 @@
-/* Global Theme */
+/* General styles */
 body {
-  margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to right, #e0eafc, #cfdef3);
-  color: #333;
-  transition: all 0.4s ease;
-  display: flex;
-  justify-content: center;
+  margin: 0;
+  padding: 0;
+  background-color: #f3f4f6;
+  color: #222;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-body.dark-mode {
-  background: linear-gradient(to right, #141e30, #243b55);
-  color: #fff;
-}
-
-/* Toggle Button - Fixed Corner */
-.theme-toggle-fixed {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: transparent;
-  color: white;
-  border: none;
-  padding: 10px 14px;
-  border-radius: 20px;
-  font-size: 16px;
-  cursor: pointer;
-  z-index: 999;
-  box-shadow: 0 0 12px rgba(108, 99, 255, 0.5);
-}
-
-body.dark-mode .theme-toggle-fixed {
-  background: transparent;
-  color: #000;
+.dark-mode {
+  background-color: #121212;
+  color: #eee;
 }
 
 /* Alarm Container */
 .alarm-container {
-  max-width: 500px;
-  margin: 100px auto;
-  padding: 30px 25px;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-  text-align: center;
-  transition: all 0.4s ease;
+  max-width: 450px;
+  margin: 60px auto;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  background-color: #ffffff;
+  transition: background-color 0.3s;
 }
 
-body.dark-mode .alarm-container {
-  background: rgba(30, 30, 30, 0.3);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+.dark-mode .alarm-container {
+  background-color: #1e1e1e;
 }
 
-/* Headings */
+/* Title & Time */
 .alarm-title {
-  font-size: 2.2rem;
+  text-align: center;
+  font-size: 2rem;
   margin-bottom: 10px;
 }
 
 .current-time {
-  font-size: 1.4rem;
-  margin-bottom: 25px;
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.current-time span {
+  font-weight: bold;
+  color: #4caf50;
 }
 
 /* Input Section */
-.input-section {
-  margin: 20px 0;
-}
-
 .input-section label {
   display: block;
-  margin: 10px 0 5px;
-  font-weight: 500;
+  margin: 15px 0 5px;
+  font-weight: bold;
 }
 
 input[type="time"],
 select {
+  width: 100%;
   padding: 10px;
-  font-size: 1rem;
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px solid #ccc;
-  width: 80%;
-  max-width: 300px;
-  margin-bottom: 15px;
-  transition: all 0.3s ease;
+  outline: none;
+  font-size: 1rem;
 }
 
-body.dark-mode input[type="time"],
-body.dark-mode select {
-  background-color: #333;
+.days-checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.days-checkboxes label {
+  background: #e0e0e0;
+  padding: 6px 12px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  user-select: none;
+  transition: background-color 0.3s;
+}
+
+.days-checkboxes input {
+  display: none;
+}
+
+.days-checkboxes input:checked + label,
+.days-checkboxes label:has(input:checked) {
+  background: #4caf50;
   color: #fff;
-  border: 1px solid #555;
 }
 
 /* Buttons */
 .button-group {
-  margin: 20px 0;
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .button-group button {
-  padding: 10px 16px;
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
   font-size: 1rem;
   border: none;
-  border-radius: 12px;
-  margin: 6px;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  transition: 0.3s;
 }
 
 .button-group button:hover {
-  transform: scale(1.05);
+  opacity: 0.9;
 }
 
-.button-group button:active {
-  transform: scale(0.95);
+.clear-btn {
+  background-color: #f44336;
+  color: #fff;
 }
 
-/* Individual Button Styles */
-.button-group button:nth-child(1) {
-  background: #00c853;
-  color: white;
-  box-shadow: 0 0 10px rgba(0, 200, 83, 0.5);
+.stop-btn {
+  background-color: #ff9800;
+  color: #fff;
 }
 
-.button-group .clear-btn {
-  background: #d32f2f;
-  color: white;
-  box-shadow: 0 0 10px rgba(211, 47, 47, 0.5);
+.button-group button:first-child {
+  background-color: #4caf50;
+  color: #fff;
 }
 
-.button-group .stop-btn {
-  background: #ffc107;
-  color: #000;
-  box-shadow: 0 0 10px rgba(255, 193, 7, 0.5);
+/* Theme toggle in corner */
+.theme-toggle-fixed {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px 12px;
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: background 0.3s;
 }
 
-body.dark-mode .button-group .stop-btn {
-  background: #ffe082;
+.dark-mode .theme-toggle-fixed {
+  background: #333;
+  color: #fff;
 }
 
-/* Alarm List */
+/* Alarm list */
 .alarm-set-text {
+  margin-top: 15px;
   font-size: 1rem;
-  margin-top: 20px;
 }
 
 .alarm-set-text ul {
   list-style: none;
-  padding: 0;
-  margin-top: 10px;
+  padding-left: 20px;
+  margin: 10px 0 0;
 }
 
 .alarm-set-text li {
   margin: 5px 0;
-  padding: 8px 12px;
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 8px;
-  font-weight: 500;
-  color: #333;
 }
 
-body.dark-mode .alarm-set-text li {
-  background: rgba(255, 255, 255, 0.1);
-  color: #f5f5f5;
+/* Ringing banner */
+.ringing-banner {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ff4444;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 30px;
+  font-size: 1rem;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  animation: fadeInOut 5s ease-in-out forwards;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  10% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  90% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
 }
 
 /* Responsive */
-@media (max-width: 600px) {
+@media screen and (max-width: 480px) {
   .alarm-container {
-    margin: 80px 20px;
-    padding: 20px 15px;
+    margin: 40px 20px;
+    padding: 20px;
   }
 
-  input[type='time'],
-  select {
-    width: 100%;
+  .button-group {
+    flex-direction: column;
   }
-}
-.days-checkboxes label {
-  margin-right: 10px;
-  font-size: 14px;
+
+  .theme-toggle-fixed {
+    top: 15px;
+    right: 15px;
+  }
 }
