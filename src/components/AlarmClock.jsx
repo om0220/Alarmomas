@@ -5,24 +5,32 @@ const AlarmClock = () => {
   const [currentTime, setCurrentTime] = useState('');
   const [alarms, setAlarms] = useState([]);
   const [newAlarmTime, setNewAlarmTime] = useState('');
+  const [selectedDays, setSelectedDays] = useState([]);
   const [darkMode, setDarkMode] = useState(false);
   const [selectedRingtone, setSelectedRingtone] = useState('/Alarm.mp3');
   const audioRef = useRef(null);
 
+  // Apply dark mode to body
   useEffect(() => {
     document.body.className = darkMode ? 'dark-mode' : '';
   }, [darkMode]);
 
+  // Get current time and check alarms every second
   useEffect(() => {
     const timer = setInterval(() => {
       const now = new Date();
       const hours = now.getHours().toString().padStart(2, '0');
       const minutes = now.getMinutes().toString().padStart(2, '0');
       const current = `${hours}:${minutes}`;
+      const today = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][now.getDay()];
       setCurrentTime(current);
 
       alarms.forEach((alarm, index) => {
-        if (!alarm.triggered && alarm.time === current) {
+        if (
+          !alarm.triggered &&
+          alarm.time === current &&
+          alarm.days.includes(today)
+        ) {
           const updatedAlarms = [...alarms];
           updatedAlarms[index].triggered = true;
           setAlarms(updatedAlarms);
@@ -37,10 +45,7 @@ const AlarmClock = () => {
           banner.className = 'ringing-banner';
           banner.innerText = `⏰ Alarm ringing: ${alarm.time}`;
           document.body.appendChild(banner);
-
-          setTimeout(() => {
-            banner.remove();
-          }, 5000);
+          setTimeout(() => banner.remove(), 5000);
         }
       });
     }, 1000);
@@ -48,21 +53,33 @@ const AlarmClock = () => {
     return () => clearInterval(timer);
   }, [alarms]);
 
-  const handleAlarmChange = (e) => {
-    setNewAlarmTime(e.target.value);
+  const handleAlarmChange = (e) => setNewAlarmTime(e.target.value);
+
+  const handleDayChange = (e) => {
+    const day = e.target.value;
+    setSelectedDays((prev) =>
+      prev.includes(day)
+        ? prev.filter((d) => d !== day)
+        : [...prev, day]
+    );
   };
 
   const handleSetAlarm = () => {
-    if (newAlarmTime) {
-      setAlarms([...alarms, {
-        time: newAlarmTime,
-        ringtone: selectedRingtone,
-        triggered: false
-      }]);
-      alert(`✅ Alarm set for ${newAlarmTime}`);
+    if (newAlarmTime && selectedDays.length > 0) {
+      setAlarms([
+        ...alarms,
+        {
+          time: newAlarmTime,
+          days: selectedDays,
+          ringtone: selectedRingtone,
+          triggered: false,
+        },
+      ]);
+      alert(`✅ Alarm set for ${newAlarmTime} on ${selectedDays.join(', ')}`);
       setNewAlarmTime('');
+      setSelectedDays([]);
     } else {
-      alert("Please select a valid time.");
+      alert('Please select a time and at least one day.');
     }
   };
 
@@ -97,6 +114,21 @@ const AlarmClock = () => {
           <label htmlFor="alarm-input">Set Alarm Time:</label>
           <input type="time" id="alarm-input" onChange={handleAlarmChange} value={newAlarmTime} />
 
+          <label>Repeat on:</label>
+          <div className="days-checkboxes">
+            {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
+              <label key={day}>
+                <input
+                  type="checkbox"
+                  value={day}
+                  checked={selectedDays.includes(day)}
+                  onChange={handleDayChange}
+                />
+                {day}
+              </label>
+            ))}
+          </div>
+
           <label htmlFor="ringtone-select">Choose Ringtone:</label>
           <select
             id="ringtone-select"
@@ -121,7 +153,9 @@ const AlarmClock = () => {
                 Alarms:
                 <ul>
                   {alarms.map((a, i) => (
-                    <li key={i}>{a.time}</li>
+                    <li key={i}>
+                      {a.time} — {a.days.join(', ')}
+                    </li>
                   ))}
                 </ul>
               </>

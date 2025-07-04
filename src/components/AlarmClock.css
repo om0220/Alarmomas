@@ -178,3 +178,7 @@ body.dark-mode .alarm-set-text li {
     width: 100%;
   }
 }
+.days-checkboxes label {
+  margin-right: 10px;
+  font-size: 14px;
+}
