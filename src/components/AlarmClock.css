@@ -1,0 +1,180 @@
+/* Global Theme */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #e0eafc, #cfdef3);
+  color: #333;
+  transition: all 0.4s ease;
+  display: flex;
+  justify-content: center;
+}
+
+body.dark-mode {
+  background: linear-gradient(to right, #141e30, #243b55);
+  color: #fff;
+}
+
+/* Toggle Button - Fixed Corner */
+.theme-toggle-fixed {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 999;
+  box-shadow: 0 0 12px rgba(108, 99, 255, 0.5);
+}
+
+body.dark-mode .theme-toggle-fixed {
+  background: transparent;
+  color: #000;
+}
+
+/* Alarm Container */
+.alarm-container {
+  max-width: 500px;
+  margin: 100px auto;
+  padding: 30px 25px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  transition: all 0.4s ease;
+}
+
+body.dark-mode .alarm-container {
+  background: rgba(30, 30, 30, 0.3);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Headings */
+.alarm-title {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+.current-time {
+  font-size: 1.4rem;
+  margin-bottom: 25px;
+}
+
+/* Input Section */
+.input-section {
+  margin: 20px 0;
+}
+
+.input-section label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: 500;
+}
+
+input[type="time"],
+select {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  width: 80%;
+  max-width: 300px;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+}
+
+body.dark-mode input[type="time"],
+body.dark-mode select {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+/* Buttons */
+.button-group {
+  margin: 20px 0;
+}
+
+.button-group button {
+  padding: 10px 16px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 12px;
+  margin: 6px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.button-group button:hover {
+  transform: scale(1.05);
+}
+
+.button-group button:active {
+  transform: scale(0.95);
+}
+
+/* Individual Button Styles */
+.button-group button:nth-child(1) {
+  background: #00c853;
+  color: white;
+  box-shadow: 0 0 10px rgba(0, 200, 83, 0.5);
+}
+
+.button-group .clear-btn {
+  background: #d32f2f;
+  color: white;
+  box-shadow: 0 0 10px rgba(211, 47, 47, 0.5);
+}
+
+.button-group .stop-btn {
+  background: #ffc107;
+  color: #000;
+  box-shadow: 0 0 10px rgba(255, 193, 7, 0.5);
+}
+
+body.dark-mode .button-group .stop-btn {
+  background: #ffe082;
+}
+
+/* Alarm List */
+.alarm-set-text {
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+.alarm-set-text ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.alarm-set-text li {
+  margin: 5px 0;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  font-weight: 500;
+  color: #333;
+}
+
+body.dark-mode .alarm-set-text li {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f5f5f5;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .alarm-container {
+    margin: 80px 20px;
+    padding: 20px 15px;
+  }
+
+  input[type='time'],
+  select {
+    width: 100%;
+  }
+}
